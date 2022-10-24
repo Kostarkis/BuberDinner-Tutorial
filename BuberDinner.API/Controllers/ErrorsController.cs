@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using BuberDinner.Application.Common.Errors;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +13,15 @@ public class ErrorsController : ControllerBase
     public IActionResult Error()
     {
         Exception? exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
-        return Problem(title: exception?.Message, statusCode: 400);
+
+        var (statusCode, message) = exception switch
+        {
+            DuplicateEmailException => (StatusCodes.Status409Conflict, "Email already exists"),
+            null => (StatusCodes.Status500InternalServerError, "An error occurred while processing your request"),
+            _ => (StatusCodes.Status500InternalServerError, exception.Message)
+        };
+
+        return Problem(title: message, statusCode: statusCode);
     }
 
 }

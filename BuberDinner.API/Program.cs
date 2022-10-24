@@ -1,6 +1,4 @@
 using BuberDinner.API.Errors;
-using BuberDinner.API.Filters;
-using BuberDinner.API.Middleware;
 //using BuberDinner.API.Middleware;
 using BuberDinner.Application;
 using BuberDinner.Infrastructure;
