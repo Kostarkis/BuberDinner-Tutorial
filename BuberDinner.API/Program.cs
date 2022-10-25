@@ -1,3 +1,4 @@
+using BuberDinner.API;
 using BuberDinner.API.Errors;
 //using BuberDinner.API.Middleware;
 using BuberDinner.Application;
@@ -8,11 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddApplication();
     builder.Services.AddInfrastructure(builder.Configuration);
+    builder.Services.AddApi();
 }
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
 
-builder.Services.AddSingleton<ProblemDetailsFactory, BuberDinnerProblemDetailsFactory>();
+//builder.Services.AddSingleton<ProblemDetailsFactory, BuberDinnerProblemDetailsFactory>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -28,7 +30,7 @@ app.UseExceptionHandler("/error");
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 
