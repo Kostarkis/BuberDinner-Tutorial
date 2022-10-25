@@ -1,8 +1,5 @@
 ﻿using BuberDinner.Application.Common.Interfaces.Authentication;
 using BuberDinner.Application.Common.Interfaces.Persistence;
-using BuberDinner.Application.Services.Authentication.Commands;
-using BuberDinner.Application.Services.Authentication.Common;
-using BuberDinner.Application.Services.Authentication.Queries;
 using ErrorOr;
 using MediatR;
 using System;
@@ -12,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BuberDinner.Domain.Common.Errors;
 using BuberDinner.Domain.Entities;
+using BuberDinner.Application.Authentication.Common;
 
 namespace BuberDinner.Application.Authentication.Commands.Register
 {
